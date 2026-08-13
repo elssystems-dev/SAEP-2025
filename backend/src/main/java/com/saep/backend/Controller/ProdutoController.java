@@ -2,18 +2,8 @@ package com.saep.backend.Controller;
 
 import java.util.List;
 
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.saep.backend.Model.Produto;
 import com.saep.backend.Repository.ProdutoRepository;
 
@@ -22,12 +12,12 @@ import com.saep.backend.Repository.ProdutoRepository;
 public class ProdutoController {
     
     private final ProdutoRepository produtoRepository;
-
+    
     ProdutoController(ProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
     }
 
-    // Método para busca
+    // Método para busca - Server-Side Rendering
     @GetMapping("/busca")
     public List<Produto> buscarPorNome(@RequestParam String termo){
         return produtoRepository.findByNomeContainingIgnoreCase(termo);
@@ -38,7 +28,6 @@ public class ProdutoController {
         return produtoRepository.findAll();
     }
     
-
     // Método para criar novo produto    
     @PostMapping
     public Produto salvar(@RequestBody Produto produto){

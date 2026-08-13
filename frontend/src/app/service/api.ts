@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'; // Biblioteca nativa do Angular
-import { Service } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // Classe de conexão com a API
@@ -10,8 +10,8 @@ export class Api {
     // Atributo
     private baseUrl = "http://localhost:8080/api";
 
-    // Construtor -> Habilita a conexão http => HttpClient
-    constructor(private http: HttpClient){};
+    // Injetando a biblioteca HttpClient
+    private http = inject(HttpClient);
 
     // Métodos:
 
